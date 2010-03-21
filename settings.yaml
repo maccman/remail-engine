@@ -1,0 +1,2 @@
+api_key: changme
+outbound_url: http://localhost:3001/emails
