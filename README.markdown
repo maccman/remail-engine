@@ -11,6 +11,8 @@ Remail uses Google App Engine to send and receive emails RESTfully.
 * Configure settings.yaml:
   * Create a random api_key, for example using uuidgen.
   * Add a publicly accessible callback url.
+* [Create](https://appengine.google.com/) a Google App Engine application.
+* Configure app.yaml with the new app id.
 * Upload the engine to Google App Engine (see their [docs](http://code.google.com/appengine/docs))
 * Install the [Remail gem](http://github.com/maccman/remail) (sudo gem install remail).
 
