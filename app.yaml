@@ -5,7 +5,7 @@ api_version: 1
 
 handlers:
 - url: /_ah/mail/.+ 
-  script: inbound.py 
+  script: main.py 
   login: admin
 - url: .*
   script: main.py

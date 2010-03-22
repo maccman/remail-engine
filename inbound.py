@@ -4,10 +4,18 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 from google.appengine.api.urlfetch import fetch
 
-config = yaml.load(open('settings.yaml'))
+settings = yaml.load(open('settings.yaml'))
 
-class LogSenderHandler(InboundMailHandler):
+class InboundHandler(InboundMailHandler):
     def receive(self, message):
         logging.info("Received a message from: " + message.sender)
-        result = {'email': {'raw': message.original}}
-        fetch(config['outbound_url'], payload=json.dumps(result), method="POST")
+        result = {'email': {'raw': message.original.as_string(True)}}
+        logging.info(result)
+        fetch(settings['outbound_url'], 
+              payload=json.dumps(result), 
+              method="POST", 
+              headers={
+                'Authorization': settings['api_key'],
+                'Content-Type': 'application/json'
+              }
+             )

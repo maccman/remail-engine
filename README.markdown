@@ -16,3 +16,4 @@ Remail uses Google App Engine to send and receive emails RESTfully.
 
 # Feature ideas
 * Retry POST callbacks if they fail.
+* Attachment support.
