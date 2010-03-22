@@ -4,9 +4,9 @@ Forget configuring SMTP servers and queues, just use Remail.
 Remail uses Google App Engine to send and receive emails RESTfully.
 
 ## Features
-* POST emails to your Remail App Engine in order to send them
-* Remail POSTS received emails back to a configurable URL
-* Will retry sending emails if endpoint not available
+* ActionMailer POSTs emails to your Remail App Engine in order to send them
+* Remail POSTs received emails back to a configurable URL
+* Remail will retry the callback if the endpoint is not available
 
 ## Setup
 * Configure settings.yaml:
