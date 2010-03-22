@@ -6,6 +6,7 @@ Remail uses Google App Engine to send and receive emails RESTfully.
 ## Features
 * POST emails to your Remail App Engine in order to send them
 * Remail POSTS received emails back to a configurable URL
+* Will retry sending emails if endpoint not available
 
 ## Setup
 * Configure settings.yaml:
@@ -17,5 +18,4 @@ Remail uses Google App Engine to send and receive emails RESTfully.
 * Install the [Remail gem](http://github.com/maccman/remail) (sudo gem install remail).
 
 ## Feature ideas
-* Retry POST callbacks if they fail.
 * Attachment support.

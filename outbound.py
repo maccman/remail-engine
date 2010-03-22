@@ -1,6 +1,6 @@
 import logging, yaml
 from django.utils import simplejson as json
-from google.appengine.ext import webapp
+from google.appengine.ext import webapp, deferred
 from google.appengine.api import mail
 
 settings = yaml.load(open('settings.yaml'))
@@ -16,6 +16,10 @@ def safe_dict(d):
     return [safe_dict(x) for x in d] 
   else: 
     return d
+    
+def email(body):
+  email = json.loads(body)
+  mail.EmailMessage(**safe_dict(email)).send()
 
 class OutboundHandler(webapp.RequestHandler):
 
@@ -23,10 +27,8 @@ class OutboundHandler(webapp.RequestHandler):
     api_key = self.request.headers.get('Authorization')
     
     if api_key != settings['api_key']:
-      logging.error("Invalid API key: " + api_key)
+      logging.error("Invalid API key: " + str(api_key))
       self.error(401)
       return
     
-    body  = self.request.body
-    email = json.loads(body)
-    mail.EmailMessage(**safe_dict(email)).send()
+    deferred.defer(email, self.request.body, _queue='outbound')

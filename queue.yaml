@@ -1,0 +1,8 @@
+# Change the outbound queue rate if you're 
+# not using the free quotas.
+queue:
+- name: inbound
+  rate: 5/s
+- name: outbound
+  rate: 2000/d
+  bucket_size: 10
